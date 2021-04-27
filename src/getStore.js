@@ -23,9 +23,9 @@ const logger = createLogger({
     stateTransformer,
 });
 
-export const getStore = ()=>{
+export const getStore = () => {
     const sagaMiddleware = createSagaMiddleware()
-    const middleWares = [thunk, sagaMiddleware];
+    const middleWares = [sagaMiddleware, thunk];
     if (getQuery()['logger']) { middleWares.push(logger)}
     const composables = [applyMiddleware(...middleWares)]
     const enhancer = compose(
@@ -36,8 +36,8 @@ export const getStore = ()=>{
         defaultState,
         enhancer
     );
-    console.info('Saga middleware implemented')
-    initSagas(sagaMiddleware)
+    console.info('Saga middleware implemented');
+    initSagas(sagaMiddleware);
 
     return store;
 };
