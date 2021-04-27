@@ -6,4 +6,4 @@ export const makeActionCreator = (type, ...argNames) => {
         });
         return action
     }
-};
+}; 
